@@ -223,6 +223,83 @@
             }
         },
         {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-d18d5679414101e426dcfcc3770d8671b3c813de529115b5a65789491600a2001571c8eab6230889e5118a0ad17c4e550f4461c3f61239366b224c2a9cdf27d6-1",
+            "file": "src/design-system/components/button/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ds-button",
+            "styleUrls": [],
+            "styles": [
+                "\n    :host {\n      display: inline-block;\n    }\n\n    button {\n      font-family: var(--font-family-primary);\n      font-size: var(--font-size-base);\n      font-weight: var(--font-weight-medium);\n      padding: var(--spacing-2) var(--spacing-4);\n      border-radius: var(--spacing-1);\n      transition: all 0.2s ease-in-out;\n    }\n\n    .primary {\n      background-color: var(--color-primary-500);\n      color: white;\n    }\n\n    .primary:hover {\n      background-color: var(--color-primary-600);\n    }\n\n    .secondary {\n      background-color: var(--color-neutral-200);\n      color: var(--color-neutral-900);\n    }\n\n    .secondary:hover {\n      background-color: var(--color-neutral-300);\n    }\n\n    .outline {\n      border: 1px solid var(--color-primary-500);\n      color: var(--color-primary-500);\n      background-color: transparent;\n    }\n\n    .outline:hover {\n      background-color: var(--color-primary-50);\n    }\n  "
+            ],
+            "template": "<button\n  mat-button\n  [class]=\"variant\"\n  [disabled]=\"disabled\"\n  [type]=\"type\"\n>\n  <ng-content></ng-content>\n</button>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 64,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 65,
+                    "type": "\"button\" | \"submit\" | \"reset\"",
+                    "decorators": []
+                },
+                {
+                    "name": "variant",
+                    "defaultValue": "'primary'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 63,
+                    "type": "\"primary\" | \"secondary\" | \"outline\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatButtonModule } from '@angular/material/button';\n\n@Component({\n  selector: 'ds-button',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule],\n  template: `\n    <button\n      mat-button\n      [class]=\"variant\"\n      [disabled]=\"disabled\"\n      [type]=\"type\"\n    >\n      <ng-content></ng-content>\n    </button>\n  `,\n  styles: [`\n    :host {\n      display: inline-block;\n    }\n\n    button {\n      font-family: var(--font-family-primary);\n      font-size: var(--font-size-base);\n      font-weight: var(--font-weight-medium);\n      padding: var(--spacing-2) var(--spacing-4);\n      border-radius: var(--spacing-1);\n      transition: all 0.2s ease-in-out;\n    }\n\n    .primary {\n      background-color: var(--color-primary-500);\n      color: white;\n    }\n\n    .primary:hover {\n      background-color: var(--color-primary-600);\n    }\n\n    .secondary {\n      background-color: var(--color-neutral-200);\n      color: var(--color-neutral-900);\n    }\n\n    .secondary:hover {\n      background-color: var(--color-neutral-300);\n    }\n\n    .outline {\n      border: 1px solid var(--color-primary-500);\n      color: var(--color-primary-500);\n      background-color: transparent;\n    }\n\n    .outline:hover {\n      background-color: var(--color-primary-50);\n    }\n  `]\n})\nexport class ButtonComponent {\n  @Input() variant: 'primary' | 'secondary' | 'outline' = 'primary';\n  @Input() disabled = false;\n  @Input() type: 'button' | 'submit' | 'reset' = 'button';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "\n    :host {\n      display: inline-block;\n    }\n\n    button {\n      font-family: var(--font-family-primary);\n      font-size: var(--font-size-base);\n      font-weight: var(--font-weight-medium);\n      padding: var(--spacing-2) var(--spacing-4);\n      border-radius: var(--spacing-1);\n      transition: all 0.2s ease-in-out;\n    }\n\n    .primary {\n      background-color: var(--color-primary-500);\n      color: white;\n    }\n\n    .primary:hover {\n      background-color: var(--color-primary-600);\n    }\n\n    .secondary {\n      background-color: var(--color-neutral-200);\n      color: var(--color-neutral-900);\n    }\n\n    .secondary:hover {\n      background-color: var(--color-neutral-300);\n    }\n\n    .outline {\n      border: 1px solid var(--color-primary-500);\n      color: var(--color-primary-500);\n      background-color: transparent;\n    }\n\n    .outline:hover {\n      background-color: var(--color-primary-50);\n    }\n  \n",
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "ButtonComponent-1"
+        },
+        {
             "name": "HeaderComponent",
             "id": "component-HeaderComponent-48b9abe37706bc42f20cfa97ed9f943678344ea7d254c0c82183c657750c2191b43486fe730c778627b2ea6aa0e2f33a7abcf3ce08b68ad18b062ad99ea97acb",
             "file": "src/stories/header.component.ts",
@@ -415,6 +492,36 @@
                 "deprecationMessage": "",
                 "type": "ApplicationConfig",
                 "defaultValue": "{\n  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]\n}"
+            },
+            {
+                "name": "colors",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/design-system/tokens/colors.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "{\n  primary: {\n    50: '#E3F2FD',\n    100: '#BBDEFB',\n    200: '#90CAF9',\n    300: '#64B5F6',\n    400: '#42A5F5',\n    500: '#2196F3',\n    600: '#1E88E5',\n    700: '#1976D2',\n    800: '#1565C0',\n    900: '#0D47A1',\n  },\n  neutral: {\n    50: '#FAFAFA',\n    100: '#F5F5F5',\n    200: '#EEEEEE',\n    300: '#E0E0E0',\n    400: '#BDBDBD',\n    500: '#9E9E9E',\n    600: '#757575',\n    700: '#616161',\n    800: '#424242',\n    900: '#212121',\n  },\n  success: {\n    50: '#E8F5E9',\n    500: '#4CAF50',\n    700: '#388E3C',\n  },\n  error: {\n    50: '#FFEBEE',\n    500: '#F44336',\n    700: '#D32F2F',\n  },\n  warning: {\n    50: '#FFF3E0',\n    500: '#FF9800',\n    700: '#F57C00',\n  },\n} as const"
+            },
+            {
+                "name": "spacing",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/design-system/tokens/spacing.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "{\n  0: '0',\n  1: '0.25rem',  // 4px\n  2: '0.5rem',   // 8px\n  3: '0.75rem',  // 12px\n  4: '1rem',     // 16px\n  5: '1.25rem',  // 20px\n  6: '1.5rem',   // 24px\n  8: '2rem',     // 32px\n  10: '2.5rem',  // 40px\n  12: '3rem',    // 48px\n  16: '4rem',    // 64px\n  20: '5rem',    // 80px\n  24: '6rem',    // 96px\n  32: '8rem',    // 128px\n  40: '10rem',   // 160px\n  48: '12rem',   // 192px\n  56: '14rem',   // 224px\n  64: '16rem',   // 256px\n} as const"
+            },
+            {
+                "name": "typography",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/design-system/tokens/typography.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "{\n  fontFamily: {\n    primary: 'Inter, system-ui, -apple-system, sans-serif',\n    secondary: 'Roboto, system-ui, -apple-system, sans-serif',\n  },\n  fontSize: {\n    xs: '0.75rem',    // 12px\n    sm: '0.875rem',   // 14px\n    base: '1rem',     // 16px\n    lg: '1.125rem',   // 18px\n    xl: '1.25rem',    // 20px\n    '2xl': '1.5rem',  // 24px\n    '3xl': '1.875rem',// 30px\n    '4xl': '2.25rem', // 36px\n  },\n  fontWeight: {\n    light: 300,\n    regular: 400,\n    medium: 500,\n    semibold: 600,\n    bold: 700,\n  },\n  lineHeight: {\n    tight: 1.25,\n    normal: 1.5,\n    relaxed: 1.75,\n  },\n} as const"
             }
         ],
         "functions": [],
@@ -432,6 +539,42 @@
                     "type": "ApplicationConfig",
                     "defaultValue": "{\n  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]\n}"
                 }
+            ],
+            "src/design-system/tokens/colors.ts": [
+                {
+                    "name": "colors",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/design-system/tokens/colors.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "{\n  primary: {\n    50: '#E3F2FD',\n    100: '#BBDEFB',\n    200: '#90CAF9',\n    300: '#64B5F6',\n    400: '#42A5F5',\n    500: '#2196F3',\n    600: '#1E88E5',\n    700: '#1976D2',\n    800: '#1565C0',\n    900: '#0D47A1',\n  },\n  neutral: {\n    50: '#FAFAFA',\n    100: '#F5F5F5',\n    200: '#EEEEEE',\n    300: '#E0E0E0',\n    400: '#BDBDBD',\n    500: '#9E9E9E',\n    600: '#757575',\n    700: '#616161',\n    800: '#424242',\n    900: '#212121',\n  },\n  success: {\n    50: '#E8F5E9',\n    500: '#4CAF50',\n    700: '#388E3C',\n  },\n  error: {\n    50: '#FFEBEE',\n    500: '#F44336',\n    700: '#D32F2F',\n  },\n  warning: {\n    50: '#FFF3E0',\n    500: '#FF9800',\n    700: '#F57C00',\n  },\n} as const"
+                }
+            ],
+            "src/design-system/tokens/spacing.ts": [
+                {
+                    "name": "spacing",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/design-system/tokens/spacing.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "{\n  0: '0',\n  1: '0.25rem',  // 4px\n  2: '0.5rem',   // 8px\n  3: '0.75rem',  // 12px\n  4: '1rem',     // 16px\n  5: '1.25rem',  // 20px\n  6: '1.5rem',   // 24px\n  8: '2rem',     // 32px\n  10: '2.5rem',  // 40px\n  12: '3rem',    // 48px\n  16: '4rem',    // 64px\n  20: '5rem',    // 80px\n  24: '6rem',    // 96px\n  32: '8rem',    // 128px\n  40: '10rem',   // 160px\n  48: '12rem',   // 192px\n  56: '14rem',   // 224px\n  64: '16rem',   // 256px\n} as const"
+                }
+            ],
+            "src/design-system/tokens/typography.ts": [
+                {
+                    "name": "typography",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/design-system/tokens/typography.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "{\n  fontFamily: {\n    primary: 'Inter, system-ui, -apple-system, sans-serif',\n    secondary: 'Roboto, system-ui, -apple-system, sans-serif',\n  },\n  fontSize: {\n    xs: '0.75rem',    // 12px\n    sm: '0.875rem',   // 14px\n    base: '1rem',     // 16px\n    lg: '1.125rem',   // 18px\n    xl: '1.25rem',    // 20px\n    '2xl': '1.5rem',  // 24px\n    '3xl': '1.875rem',// 30px\n    '4xl': '2.25rem', // 36px\n  },\n  fontWeight: {\n    light: 300,\n    regular: 400,\n    medium: 500,\n    semibold: 600,\n    bold: 700,\n  },\n  lineHeight: {\n    tight: 1.25,\n    normal: 1.5,\n    relaxed: 1.75,\n  },\n} as const"
+                }
             ]
         },
         "groupedFunctions": {},
@@ -440,7 +583,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 13,
+        "count": 8,
         "status": "low",
         "files": [
             {
@@ -458,6 +601,45 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "appConfig",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/design-system/components/button/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/design-system/tokens/colors.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "colors",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/design-system/tokens/spacing.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "spacing",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/design-system/tokens/typography.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "typography",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
