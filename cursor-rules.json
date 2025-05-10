@@ -1,0 +1,74 @@
+{
+  "$schema": "https://raw.githubusercontent.com/getcursor/cursor-rules/main/schema.json",
+  "project": {
+    "name": "angular-material-tailwind-design-system",
+    "description": "Angular 19-based design system using Material UI 19, Tailwind CSS 4, Storybook 8, and Compodoc."
+  },
+  "structure": {
+    "folders": [
+      {
+        "path": "libs/design-system",
+        "description": "Source of truth for UI components, tokens, themes, and utilities."
+      },
+      {
+        "path": "libs/design-system/components",
+        "description": "Atomic or Material-based UI components with Tailwind classes."
+      },
+      {
+        "path": "libs/design-system/tokens",
+        "description": "Design tokens like colors, spacing, font-sizes (exported via SCSS/TS)."
+      },
+      {
+        "path": ".storybook",
+        "description": "Configuration for Storybook 8 — uses Angular + Tailwind setup."
+      }
+    ]
+  },
+  "conventions": {
+    "component": {
+      "style": "Use Angular standalone components with SCAM pattern where applicable.",
+      "tailwind": "Prefer Tailwind utility classes; override or extend via tailwind.config.ts if needed.",
+      "material": "Use Angular Material components and extend via Tailwind when required.",
+      "naming": "Use PascalCase for component names and kebab-case for filenames.",
+      "docs": "Each component must have a Storybook story and Compodoc comments on inputs/outputs."
+    },
+    "storybook": {
+      "structure": "Place stories next to component files using .stories.ts format.",
+      "controls": "Use Storybook controls for all inputs/outputs and states.",
+      "variants": "Document multiple visual states using named exports (e.g., Primary, Disabled)."
+    },
+    "compodoc": {
+      "usage": "Run Compodoc on libs/design-system and link docs in Storybook where helpful."
+    },
+    "tests": {
+      "unit": "Write Jest or Angular TestBed tests for all components inside __tests__ folders."
+    }
+  },
+  "tools": {
+    "storybook": {
+      "version": "8",
+      "configPath": ".storybook",
+      "addons": ["@storybook/addon-controls", "@storybook/addon-a11y"]
+    },
+    "tailwind": {
+      "version": "4",
+      "configPath": "tailwind.config.ts",
+      "theme": {
+        "extend": true
+      }
+    },
+    "compodoc": {
+      "version": "latest",
+      "tsconfig": "tsconfig.json",
+      "output": "documentation/"
+    }
+  },
+  "recommendations": {
+    "start": [
+      "Break down Material components into your own design-layer components for reuse.",
+      "Create design tokens (colors, font sizes, spacing) in a separate tokens.ts or SCSS file.",
+      "Write Storybook stories for every reusable component from the beginning.",
+      "Ensure every component has docs using Compodoc with @Input/@Output annotated."
+    ]
+  }
+}
