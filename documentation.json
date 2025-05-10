@@ -224,7 +224,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-d18d5679414101e426dcfcc3770d8671b3c813de529115b5a65789491600a2001571c8eab6230889e5118a0ad17c4e550f4461c3f61239366b224c2a9cdf27d6-1",
+            "id": "component-ButtonComponent-9d1a32590d3c2b0e32a2babce474e00288d78db523cf4e1131e4d898940847142285b9ddfdbbde93dc4ac41548c66fabcde38924218fa1ac56365a55735c8ec7-1",
             "file": "src/design-system/components/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -234,9 +234,9 @@
             "selector": "ds-button",
             "styleUrls": [],
             "styles": [
-                "\n    :host {\n      display: inline-block;\n    }\n\n    button {\n      font-family: var(--font-family-primary);\n      font-size: var(--font-size-base);\n      font-weight: var(--font-weight-medium);\n      padding: var(--spacing-2) var(--spacing-4);\n      border-radius: var(--spacing-1);\n      transition: all 0.2s ease-in-out;\n    }\n\n    .primary {\n      background-color: var(--color-primary-500);\n      color: white;\n    }\n\n    .primary:hover {\n      background-color: var(--color-primary-600);\n    }\n\n    .secondary {\n      background-color: var(--color-neutral-200);\n      color: var(--color-neutral-900);\n    }\n\n    .secondary:hover {\n      background-color: var(--color-neutral-300);\n    }\n\n    .outline {\n      border: 1px solid var(--color-primary-500);\n      color: var(--color-primary-500);\n      background-color: transparent;\n    }\n\n    .outline:hover {\n      background-color: var(--color-primary-50);\n    }\n  "
+                "\n    :host {\n      display: inline-block;\n    }\n\n    ::ng-deep .mat-mdc-button {\n      min-width: 80px;\n    }\n  "
             ],
-            "template": "<button\n  mat-button\n  [class]=\"variant\"\n  [disabled]=\"disabled\"\n  [type]=\"type\"\n>\n  <ng-content></ng-content>\n</button>\n",
+            "template": "<button\n  mat-raised-button\n  [class]=\"getButtonClasses()\"\n  [disabled]=\"disabled\"\n  [type]=\"type\"\n>\n  <span class=\"flex items-center justify-center gap-2\">\n    <ng-content></ng-content>\n  </span>\n</button>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -246,7 +246,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 64,
+                    "line": 33,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -255,7 +255,7 @@
                     "defaultValue": "'button'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 65,
+                    "line": 34,
                     "type": "\"button\" | \"submit\" | \"reset\"",
                     "decorators": []
                 },
@@ -264,14 +264,25 @@
                     "defaultValue": "'primary'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 63,
-                    "type": "\"primary\" | \"secondary\" | \"outline\"",
+                    "line": 32,
+                    "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\"",
                     "decorators": []
                 }
             ],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "getButtonClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -290,14 +301,259 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatButtonModule } from '@angular/material/button';\n\n@Component({\n  selector: 'ds-button',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule],\n  template: `\n    <button\n      mat-button\n      [class]=\"variant\"\n      [disabled]=\"disabled\"\n      [type]=\"type\"\n    >\n      <ng-content></ng-content>\n    </button>\n  `,\n  styles: [`\n    :host {\n      display: inline-block;\n    }\n\n    button {\n      font-family: var(--font-family-primary);\n      font-size: var(--font-size-base);\n      font-weight: var(--font-weight-medium);\n      padding: var(--spacing-2) var(--spacing-4);\n      border-radius: var(--spacing-1);\n      transition: all 0.2s ease-in-out;\n    }\n\n    .primary {\n      background-color: var(--color-primary-500);\n      color: white;\n    }\n\n    .primary:hover {\n      background-color: var(--color-primary-600);\n    }\n\n    .secondary {\n      background-color: var(--color-neutral-200);\n      color: var(--color-neutral-900);\n    }\n\n    .secondary:hover {\n      background-color: var(--color-neutral-300);\n    }\n\n    .outline {\n      border: 1px solid var(--color-primary-500);\n      color: var(--color-primary-500);\n      background-color: transparent;\n    }\n\n    .outline:hover {\n      background-color: var(--color-primary-50);\n    }\n  `]\n})\nexport class ButtonComponent {\n  @Input() variant: 'primary' | 'secondary' | 'outline' = 'primary';\n  @Input() disabled = false;\n  @Input() type: 'button' | 'submit' | 'reset' = 'button';\n}\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatButtonModule } from '@angular/material/button';\n\n@Component({\n  selector: 'ds-button',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule],\n  template: `\n    <button\n      mat-raised-button\n      [class]=\"getButtonClasses()\"\n      [disabled]=\"disabled\"\n      [type]=\"type\"\n    >\n      <span class=\"flex items-center justify-center gap-2\">\n        <ng-content></ng-content>\n      </span>\n    </button>\n  `,\n  styles: [`\n    :host {\n      display: inline-block;\n    }\n\n    ::ng-deep .mat-mdc-button {\n      min-width: 80px;\n    }\n  `]\n})\nexport class ButtonComponent {\n  @Input() variant: 'primary' | 'secondary' | 'tertiary' | 'danger' = 'primary';\n  @Input() disabled = false;\n  @Input() type: 'button' | 'submit' | 'reset' = 'button';\n\n  getButtonClasses(): string {\n    const baseClasses = 'font-medium rounded transition-all duration-200 ease-in-out px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2';\n\n    const variantClasses = {\n      primary: 'bg-[#0D47A1] text-white hover:bg-[#1565C0] focus:ring-[#0D47A1]',\n      secondary: 'bg-[#E3F2FD] text-[#0D47A1] hover:bg-[#BBDEFB] focus:ring-[#0D47A1]',\n      tertiary: 'border-2 border-[#0D47A1] text-[#0D47A1] hover:bg-[#E3F2FD] focus:ring-[#0D47A1]',\n      danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',\n    };\n\n    const disabledClasses = this.disabled\n      ? 'opacity-50 cursor-not-allowed pointer-events-none'\n      : '';\n\n    return `${baseClasses} ${variantClasses[this.variant]} ${disabledClasses}`;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
-            "stylesData": "\n    :host {\n      display: inline-block;\n    }\n\n    button {\n      font-family: var(--font-family-primary);\n      font-size: var(--font-size-base);\n      font-weight: var(--font-weight-medium);\n      padding: var(--spacing-2) var(--spacing-4);\n      border-radius: var(--spacing-1);\n      transition: all 0.2s ease-in-out;\n    }\n\n    .primary {\n      background-color: var(--color-primary-500);\n      color: white;\n    }\n\n    .primary:hover {\n      background-color: var(--color-primary-600);\n    }\n\n    .secondary {\n      background-color: var(--color-neutral-200);\n      color: var(--color-neutral-900);\n    }\n\n    .secondary:hover {\n      background-color: var(--color-neutral-300);\n    }\n\n    .outline {\n      border: 1px solid var(--color-primary-500);\n      color: var(--color-primary-500);\n      background-color: transparent;\n    }\n\n    .outline:hover {\n      background-color: var(--color-primary-50);\n    }\n  \n",
+            "stylesData": "\n    :host {\n      display: inline-block;\n    }\n\n    ::ng-deep .mat-mdc-button {\n      min-width: 80px;\n    }\n  \n",
             "extends": [],
             "isDuplicate": true,
             "duplicateId": 1,
             "duplicateName": "ButtonComponent-1"
+        },
+        {
+            "name": "CheckboxComponent",
+            "id": "component-CheckboxComponent-4c56f8f9783e3e1e7177d2c43f8f06631d7d176b0c65eb7a58153dcdaea5d08d481495814fd725a2880c390ad7a560dc8948526807f920e34e8fa3b62d962b22",
+            "file": "src/design-system/components/checkbox/checkbox.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => CheckboxComponent), multi: true\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "ds-checkbox",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<div [class]=\"'flex flex-col gap-1'\">\n  <mat-checkbox\n    [checked]=\"value\"\n    (change)=\"onChange($event.checked)\"\n    (blur)=\"onTouched()\"\n    [disabled]=\"disabled\"\n    [class]=\"'text-[#0D47A1]'\"\n    [class.ng-invalid]=\"errors !== null\"\n  >\n    {{ label }}\n  </mat-checkbox>\n  <span *ngIf=\"errors\" [class]=\"'text-red-500 text-sm'\">\n    {{ getErrorMessage() }}\n  </span>\n</div>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "errors",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "ValidationErrors | null",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 39
+                },
+                {
+                    "name": "onChange",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 41,
+                    "modifierKind": [
+                        124
+                    ]
+                },
+                {
+                    "name": "onTouched",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 42,
+                    "modifierKind": [
+                        124
+                    ]
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 38
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getErrorMessage",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 58,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 62,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setDisabledState",
+                    "args": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 66,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 54,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatCheckboxModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, forwardRef } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatCheckboxModule } from '@angular/material/checkbox';\nimport { ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';\n\n@Component({\n  selector: 'ds-checkbox',\n  standalone: true,\n  imports: [CommonModule, MatCheckboxModule],\n  template: `\n    <div [class]=\"'flex flex-col gap-1'\">\n      <mat-checkbox\n        [checked]=\"value\"\n        (change)=\"onChange($event.checked)\"\n        (blur)=\"onTouched()\"\n        [disabled]=\"disabled\"\n        [class]=\"'text-[#0D47A1]'\"\n        [class.ng-invalid]=\"errors !== null\"\n      >\n        {{ label }}\n      </mat-checkbox>\n      <span *ngIf=\"errors\" [class]=\"'text-red-500 text-sm'\">\n        {{ getErrorMessage() }}\n      </span>\n    </div>\n  `,\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => CheckboxComponent),\n      multi: true\n    }\n  ]\n})\nexport class CheckboxComponent implements ControlValueAccessor {\n  @Input() label = '';\n  @Input() errors: ValidationErrors | null = null;\n  value = false;\n  disabled = false;\n\n  protected onChange: any = () => {};\n  protected onTouched: any = () => {};\n\n  getErrorMessage(): string {\n    if (!this.errors) return '';\n\n    if (this.errors['required']) {\n      return `${this.label} must be checked`;\n    }\n\n    return 'Invalid selection';\n  }\n\n  writeValue(value: boolean): void {\n    this.value = value;\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouched = fn;\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.disabled = isDisabled;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "ControlValueAccessor"
+            ]
         },
         {
             "name": "HeaderComponent",
@@ -384,6 +640,323 @@
             ],
             "stylesData": "",
             "extends": []
+        },
+        {
+            "name": "InputComponent",
+            "id": "component-InputComponent-7d9e42a8a244ea211ce149f98cb9a4fbf8c55bc7032179dc0fcaec13abd529cc59aeab4fcf1f976c02748494b5ee3df35bd7f4013138cf5366c2bff09c9c0497",
+            "file": "src/design-system/components/input/input.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InputComponent), multi: true\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "ds-input",
+            "styleUrls": [],
+            "styles": [
+                "\n    ::ng-deep {\n      .mat-mdc-form-field {\n        .mat-mdc-form-field-flex {\n          background-color: white;\n        }\n        .mat-mdc-form-field-outline {\n          color: #0D47A1;\n        }\n        .mat-mdc-input-element {\n          color: #0D47A1;\n        }\n        .mat-mdc-form-field-label {\n          color: #0D47A1;\n        }\n        &.ng-invalid.ng-touched {\n          .mat-mdc-form-field-outline {\n            color: #f44336;\n          }\n        }\n      }\n    }\n  "
+            ],
+            "template": "<mat-form-field appearance=\"outline\" [class]=\"'w-full'\">\n  <mat-label>{{ label }}</mat-label>\n  <input\n    matInput\n    [type]=\"type\"\n    [value]=\"value\"\n    (input)=\"onInputChange($event)\"\n    (blur)=\"onTouched()\"\n    [disabled]=\"disabled\"\n    [placeholder]=\"placeholder\"\n    [errorStateMatcher]=\"errorStateMatcher\"\n  />\n  <mat-hint *ngIf=\"hint && !errors\">{{ hint }}</mat-hint>\n  <mat-error *ngIf=\"errors\">\n    {{ getErrorMessage() }}\n  </mat-error>\n</mat-form-field>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "errors",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 66,
+                    "type": "ValidationErrors | null",
+                    "decorators": []
+                },
+                {
+                    "name": "hint",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 65,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 62,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 64,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'text'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 63,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 68
+                },
+                {
+                    "name": "errorStateMatcher",
+                    "defaultValue": "{\n    isErrorState: () => this.errors !== null\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 73
+                },
+                {
+                    "name": "onChange",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 70,
+                    "modifierKind": [
+                        124
+                    ]
+                },
+                {
+                    "name": "onTouched",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 71,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 67
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getErrorMessage",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 82,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onInputChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 77,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 108,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 112,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setDisabledState",
+                    "args": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 116,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 104,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatInputModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatFormFieldModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, forwardRef } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';\n\n@Component({\n  selector: 'ds-input',\n  standalone: true,\n  imports: [CommonModule, MatInputModule, MatFormFieldModule],\n  template: `\n    <mat-form-field appearance=\"outline\" [class]=\"'w-full'\">\n      <mat-label>{{ label }}</mat-label>\n      <input\n        matInput\n        [type]=\"type\"\n        [value]=\"value\"\n        (input)=\"onInputChange($event)\"\n        (blur)=\"onTouched()\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [errorStateMatcher]=\"errorStateMatcher\"\n      />\n      <mat-hint *ngIf=\"hint && !errors\">{{ hint }}</mat-hint>\n      <mat-error *ngIf=\"errors\">\n        {{ getErrorMessage() }}\n      </mat-error>\n    </mat-form-field>\n  `,\n  styles: [`\n    ::ng-deep {\n      .mat-mdc-form-field {\n        .mat-mdc-form-field-flex {\n          background-color: white;\n        }\n        .mat-mdc-form-field-outline {\n          color: #0D47A1;\n        }\n        .mat-mdc-input-element {\n          color: #0D47A1;\n        }\n        .mat-mdc-form-field-label {\n          color: #0D47A1;\n        }\n        &.ng-invalid.ng-touched {\n          .mat-mdc-form-field-outline {\n            color: #f44336;\n          }\n        }\n      }\n    }\n  `],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => InputComponent),\n      multi: true\n    }\n  ]\n})\nexport class InputComponent implements ControlValueAccessor {\n  @Input() label = '';\n  @Input() type = 'text';\n  @Input() placeholder = '';\n  @Input() hint = '';\n  @Input() errors: ValidationErrors | null = null;\n  value = '';\n  disabled = false;\n\n  protected onChange: any = () => {};\n  private onTouched: any = () => {};\n\n  errorStateMatcher = {\n    isErrorState: () => this.errors !== null\n  };\n\n  onInputChange(event: Event): void {\n    const input = event.target as HTMLInputElement;\n    this.onChange(input.value);\n  }\n\n  getErrorMessage(): string {\n    if (!this.errors) return '';\n\n    if (this.errors['required']) {\n      return `${this.label} is required`;\n    }\n    if (this.errors['email']) {\n      return 'Please enter a valid email address';\n    }\n    if (this.errors['minlength']) {\n      return `${this.label} must be at least ${this.errors['minlength'].requiredLength} characters`;\n    }\n    if (this.errors['maxlength']) {\n      return `${this.label} must be at most ${this.errors['maxlength'].requiredLength} characters`;\n    }\n    if (this.errors['pattern']) {\n      return `${this.label} has an invalid format`;\n    }\n\n    return 'Invalid input';\n  }\n\n  writeValue(value: string): void {\n    this.value = value;\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouched = fn;\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.disabled = isDisabled;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "\n    ::ng-deep {\n      .mat-mdc-form-field {\n        .mat-mdc-form-field-flex {\n          background-color: white;\n        }\n        .mat-mdc-form-field-outline {\n          color: #0D47A1;\n        }\n        .mat-mdc-input-element {\n          color: #0D47A1;\n        }\n        .mat-mdc-form-field-label {\n          color: #0D47A1;\n        }\n        &.ng-invalid.ng-touched {\n          .mat-mdc-form-field-outline {\n            color: #f44336;\n          }\n        }\n      }\n    }\n  \n",
+            "extends": [],
+            "implements": [
+                "ControlValueAccessor"
+            ]
         },
         {
             "name": "PageComponent",
@@ -478,6 +1051,529 @@
             ],
             "stylesData": "",
             "extends": []
+        },
+        {
+            "name": "RadioComponent",
+            "id": "component-RadioComponent-db99e300b723187652a4ff4a05faf9c8e142f63273d4f7dc2a56807831e34cd5652330d94841962ce5be134224137831c0215638ddffcf0beb9cd588f837adfa",
+            "file": "src/design-system/components/radio/radio.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => RadioComponent), multi: true\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "ds-radio",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<div [class]=\"'flex flex-col gap-2'\">\n  <mat-radio-group\n    [class]=\"'flex flex-col gap-2'\"\n    [value]=\"value\"\n    (change)=\"onChange($event.value)\"\n    (blur)=\"onTouched()\"\n    [class.ng-invalid]=\"errors !== null\"\n  >\n    <mat-radio-button\n      *ngFor=\"let option of options\"\n      [value]=\"option.value\"\n      [class]=\"'text-[#0D47A1]'\"\n    >\n      {{ option.label }}\n    </mat-radio-button>\n  </mat-radio-group>\n  <span *ngIf=\"errors\" [class]=\"'text-red-500 text-sm'\">\n    {{ getErrorMessage() }}\n  </span>\n</div>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "errors",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 42,
+                    "type": "ValidationErrors | null",
+                    "decorators": []
+                },
+                {
+                    "name": "options",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 41,
+                    "type": "literal type[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 44
+                },
+                {
+                    "name": "onChange",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 46,
+                    "modifierKind": [
+                        124
+                    ]
+                },
+                {
+                    "name": "onTouched",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 47,
+                    "modifierKind": [
+                        124
+                    ]
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 43
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getErrorMessage",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 49,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 63,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 67,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setDisabledState",
+                    "args": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 71,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 59,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatRadioModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, forwardRef } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatRadioModule } from '@angular/material/radio';\nimport { ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';\n\n@Component({\n  selector: 'ds-radio',\n  standalone: true,\n  imports: [CommonModule, MatRadioModule],\n  template: `\n    <div [class]=\"'flex flex-col gap-2'\">\n      <mat-radio-group\n        [class]=\"'flex flex-col gap-2'\"\n        [value]=\"value\"\n        (change)=\"onChange($event.value)\"\n        (blur)=\"onTouched()\"\n        [class.ng-invalid]=\"errors !== null\"\n      >\n        <mat-radio-button\n          *ngFor=\"let option of options\"\n          [value]=\"option.value\"\n          [class]=\"'text-[#0D47A1]'\"\n        >\n          {{ option.label }}\n        </mat-radio-button>\n      </mat-radio-group>\n      <span *ngIf=\"errors\" [class]=\"'text-red-500 text-sm'\">\n        {{ getErrorMessage() }}\n      </span>\n    </div>\n  `,\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => RadioComponent),\n      multi: true\n    }\n  ]\n})\nexport class RadioComponent implements ControlValueAccessor {\n  @Input() options: { label: string; value: any }[] = [];\n  @Input() errors: ValidationErrors | null = null;\n  value: any;\n  disabled = false;\n\n  protected onChange: any = () => {};\n  protected onTouched: any = () => {};\n\n  getErrorMessage(): string {\n    if (!this.errors) return '';\n\n    if (this.errors['required']) {\n      return 'Please select an option';\n    }\n\n    return 'Invalid selection';\n  }\n\n  writeValue(value: any): void {\n    this.value = value;\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouched = fn;\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.disabled = isDisabled;\n  }\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "ControlValueAccessor"
+            ]
+        },
+        {
+            "name": "SelectComponent",
+            "id": "component-SelectComponent-1b8919980c57e4b814aaf5ab86e3edc0bbcb19a1f3c2be53113f839c399f25141354b8694189d5ed946e8702b7869ad9a92021ead5f9f321b0d7cfeb693cc853",
+            "file": "src/design-system/components/select/select.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => SelectComponent), multi: true\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "ds-select",
+            "styleUrls": [],
+            "styles": [
+                "\n    ::ng-deep {\n      .mat-mdc-form-field {\n        .mat-mdc-form-field-flex {\n          background-color: white;\n        }\n        .mat-mdc-form-field-outline {\n          color: #0D47A1;\n        }\n        .mat-mdc-select-value-text {\n          color: #0D47A1;\n        }\n        .mat-mdc-select-arrow {\n          color: #0D47A1;\n        }\n        &.ng-invalid.ng-touched {\n          .mat-mdc-form-field-outline {\n            color: #f44336;\n          }\n        }\n      }\n    }\n  "
+            ],
+            "template": "<mat-form-field appearance=\"outline\" [class]=\"'w-full'\">\n  <mat-label>{{ label }}</mat-label>\n  <mat-select\n    [value]=\"value\"\n    (selectionChange)=\"onChange($event.value)\"\n    (blur)=\"onTouched()\"\n    [disabled]=\"disabled\"\n    [errorStateMatcher]=\"errorStateMatcher\"\n  >\n    <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\n      {{ option.label }}\n    </mat-option>\n  </mat-select>\n  <mat-hint *ngIf=\"hint && !errors\">{{ hint }}</mat-hint>\n  <mat-error *ngIf=\"errors\">\n    {{ getErrorMessage() }}\n  </mat-error>\n</mat-form-field>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "errors",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 66,
+                    "type": "ValidationErrors | null",
+                    "decorators": []
+                },
+                {
+                    "name": "hint",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 65,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 63,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "options",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 64,
+                    "type": "literal type[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 68
+                },
+                {
+                    "name": "errorStateMatcher",
+                    "defaultValue": "{\n    isErrorState: () => this.errors !== null\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 73
+                },
+                {
+                    "name": "onChange",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 70,
+                    "modifierKind": [
+                        124
+                    ]
+                },
+                {
+                    "name": "onTouched",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 71,
+                    "modifierKind": [
+                        124
+                    ]
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 67
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getErrorMessage",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 77,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 91,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 95,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setDisabledState",
+                    "args": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 99,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 87,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatSelectModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatFormFieldModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, forwardRef } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatSelectModule } from '@angular/material/select';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';\n\n@Component({\n  selector: 'ds-select',\n  standalone: true,\n  imports: [CommonModule, MatSelectModule, MatFormFieldModule],\n  template: `\n    <mat-form-field appearance=\"outline\" [class]=\"'w-full'\">\n      <mat-label>{{ label }}</mat-label>\n      <mat-select\n        [value]=\"value\"\n        (selectionChange)=\"onChange($event.value)\"\n        (blur)=\"onTouched()\"\n        [disabled]=\"disabled\"\n        [errorStateMatcher]=\"errorStateMatcher\"\n      >\n        <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\n          {{ option.label }}\n        </mat-option>\n      </mat-select>\n      <mat-hint *ngIf=\"hint && !errors\">{{ hint }}</mat-hint>\n      <mat-error *ngIf=\"errors\">\n        {{ getErrorMessage() }}\n      </mat-error>\n    </mat-form-field>\n  `,\n  styles: [`\n    ::ng-deep {\n      .mat-mdc-form-field {\n        .mat-mdc-form-field-flex {\n          background-color: white;\n        }\n        .mat-mdc-form-field-outline {\n          color: #0D47A1;\n        }\n        .mat-mdc-select-value-text {\n          color: #0D47A1;\n        }\n        .mat-mdc-select-arrow {\n          color: #0D47A1;\n        }\n        &.ng-invalid.ng-touched {\n          .mat-mdc-form-field-outline {\n            color: #f44336;\n          }\n        }\n      }\n    }\n  `],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => SelectComponent),\n      multi: true\n    }\n  ]\n})\nexport class SelectComponent implements ControlValueAccessor {\n  @Input() label = '';\n  @Input() options: { label: string; value: any }[] = [];\n  @Input() hint = '';\n  @Input() errors: ValidationErrors | null = null;\n  value: any;\n  disabled = false;\n\n  protected onChange: any = () => {};\n  protected onTouched: any = () => {};\n\n  errorStateMatcher = {\n    isErrorState: () => this.errors !== null\n  };\n\n  getErrorMessage(): string {\n    if (!this.errors) return '';\n\n    if (this.errors['required']) {\n      return `${this.label} is required`;\n    }\n\n    return 'Invalid selection';\n  }\n\n  writeValue(value: any): void {\n    this.value = value;\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouched = fn;\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.disabled = isDisabled;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "\n    ::ng-deep {\n      .mat-mdc-form-field {\n        .mat-mdc-form-field-flex {\n          background-color: white;\n        }\n        .mat-mdc-form-field-outline {\n          color: #0D47A1;\n        }\n        .mat-mdc-select-value-text {\n          color: #0D47A1;\n        }\n        .mat-mdc-select-arrow {\n          color: #0D47A1;\n        }\n        &.ng-invalid.ng-touched {\n          .mat-mdc-form-field-outline {\n            color: #f44336;\n          }\n        }\n      }\n    }\n  \n",
+            "extends": [],
+            "implements": [
+                "ControlValueAccessor"
+            ]
         }
     ],
     "modules": [],
@@ -583,7 +1679,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 8,
+        "count": 5,
         "status": "low",
         "files": [
             {
@@ -611,7 +1707,43 @@
                 "linktype": "component",
                 "name": "ButtonComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/design-system/components/checkbox/checkbox.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CheckboxComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/design-system/components/input/input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "InputComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/17",
+                "status": "low"
+            },
+            {
+                "filePath": "src/design-system/components/radio/radio.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "RadioComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/design-system/components/select/select.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SelectComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/15",
                 "status": "low"
             },
             {

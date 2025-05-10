@@ -8,12 +8,14 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [CommonModule, MatButtonModule],
   template: `
     <button
-      mat-button
-      [class]="variant"
+      mat-raised-button
+      [class]="getButtonClasses()"
       [disabled]="disabled"
       [type]="type"
     >
-      <ng-content></ng-content>
+      <span class="flex items-center justify-center gap-2">
+        <ng-content></ng-content>
+      </span>
     </button>
   `,
   styles: [`
@@ -21,46 +23,30 @@ import { MatButtonModule } from '@angular/material/button';
       display: inline-block;
     }
 
-    button {
-      font-family: var(--font-family-primary);
-      font-size: var(--font-size-base);
-      font-weight: var(--font-weight-medium);
-      padding: var(--spacing-2) var(--spacing-4);
-      border-radius: var(--spacing-1);
-      transition: all 0.2s ease-in-out;
-    }
-
-    .primary {
-      background-color: var(--color-primary-500);
-      color: white;
-    }
-
-    .primary:hover {
-      background-color: var(--color-primary-600);
-    }
-
-    .secondary {
-      background-color: var(--color-neutral-200);
-      color: var(--color-neutral-900);
-    }
-
-    .secondary:hover {
-      background-color: var(--color-neutral-300);
-    }
-
-    .outline {
-      border: 1px solid var(--color-primary-500);
-      color: var(--color-primary-500);
-      background-color: transparent;
-    }
-
-    .outline:hover {
-      background-color: var(--color-primary-50);
+    ::ng-deep .mat-mdc-button {
+      min-width: 80px;
     }
   `]
 })
 export class ButtonComponent {
-  @Input() variant: 'primary' | 'secondary' | 'outline' = 'primary';
+  @Input() variant: 'primary' | 'secondary' | 'tertiary' | 'danger' = 'primary';
   @Input() disabled = false;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
+
+  getButtonClasses(): string {
+    const baseClasses = 'font-medium rounded transition-all duration-200 ease-in-out px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2';
+
+    const variantClasses = {
+      primary: 'bg-[#0D47A1] text-white hover:bg-[#1565C0] focus:ring-[#0D47A1]',
+      secondary: 'bg-[#E3F2FD] text-[#0D47A1] hover:bg-[#BBDEFB] focus:ring-[#0D47A1]',
+      tertiary: 'border-2 border-[#0D47A1] text-[#0D47A1] hover:bg-[#E3F2FD] focus:ring-[#0D47A1]',
+      danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
+    };
+
+    const disabledClasses = this.disabled
+      ? 'opacity-50 cursor-not-allowed pointer-events-none'
+      : '';
+
+    return `${baseClasses} ${variantClasses[this.variant]} ${disabledClasses}`;
+  }
 }

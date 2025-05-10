@@ -8,7 +8,7 @@ const meta: Meta<ButtonComponent> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline'],
+      options: ['primary', 'secondary', 'tertiary', 'danger'],
       description: 'The visual style of the button'
     },
     disabled: {
@@ -50,14 +50,64 @@ export const Secondary: Story = {
   })
 };
 
-export const Outline: Story = {
+export const Tertiary: Story = {
   args: {
-    variant: 'outline',
+    variant: 'tertiary',
     disabled: false,
     type: 'button'
   },
   render: (args) => ({
     props: args,
-    template: `<ds-button [variant]="variant" [disabled]="disabled" [type]="type">Outline Button</ds-button>`
+    template: `<ds-button [variant]="variant" [disabled]="disabled" [type]="type">Tertiary Button</ds-button>`
+  })
+};
+
+export const Danger: Story = {
+  args: {
+    variant: 'danger',
+    disabled: false,
+    type: 'button'
+  },
+  render: (args) => ({
+    props: args,
+    template: `<ds-button [variant]="variant" [disabled]="disabled" [type]="type">Danger Button</ds-button>`
+  })
+};
+
+export const Disabled: Story = {
+  args: {
+    variant: 'primary',
+    disabled: true,
+    type: 'button'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="flex flex-wrap gap-4">
+        <ds-button [variant]="'primary'" [disabled]="true">Primary</ds-button>
+        <ds-button [variant]="'secondary'" [disabled]="true">Secondary</ds-button>
+        <ds-button [variant]="'tertiary'" [disabled]="true">Tertiary</ds-button>
+        <ds-button [variant]="'danger'" [disabled]="true">Danger</ds-button>
+      </div>
+    `
+  })
+};
+
+export const Responsive: Story = {
+  args: {
+    variant: 'primary',
+    disabled: false,
+    type: 'button'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="flex flex-col sm:flex-row gap-4">
+        <ds-button [variant]="'primary'">Primary</ds-button>
+        <ds-button [variant]="'secondary'">Secondary</ds-button>
+        <ds-button [variant]="'tertiary'">Tertiary</ds-button>
+        <ds-button [variant]="'danger'">Danger</ds-button>
+      </div>
+    `
   })
 };
