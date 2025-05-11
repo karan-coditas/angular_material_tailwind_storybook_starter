@@ -2,6 +2,51 @@
     "pipes": [],
     "interfaces": [
         {
+            "name": "ColorSwatch",
+            "id": "interface-ColorSwatch-7f6d264d48cceddc7f2f0ff5ca6f79ee9507e7f351cc11997f16ddb041e38e23e25e6a9f26a8c11ba50e6d1c366cf37b3bff7cf9c185e82a84e266a2b8bce336",
+            "file": "src/design-system/components/colors/colors.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\ninterface ColorSwatch {\n  name: string;\n  hex: string;\n  usage: string;\n}\n\n@Component({\n  selector: 'ds-colors',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div class=\"space-y-8\">\n      <!-- Primary Colors -->\n      <div class=\"space-y-4\">\n        <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Primary Colors</h2>\n        <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n          <div *ngFor=\"let color of primaryColors\" class=\"p-4 rounded-lg border border-gray-200\">\n            <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n            <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n            <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n            <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n          </div>\n        </div>\n      </div>\n\n      <!-- Secondary Colors -->\n      <div class=\"space-y-4\">\n        <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Secondary Colors</h2>\n        <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n          <div *ngFor=\"let color of secondaryColors\" class=\"p-4 rounded-lg border border-gray-200\">\n            <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n            <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n            <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n            <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n          </div>\n        </div>\n      </div>\n\n      <!-- Semantic Colors -->\n      <div class=\"space-y-4\">\n        <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Semantic Colors</h2>\n        <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n          <div *ngFor=\"let color of semanticColors\" class=\"p-4 rounded-lg border border-gray-200\">\n            <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n            <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n            <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n            <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n          </div>\n        </div>\n      </div>\n\n      <!-- Neutral Colors -->\n      <div class=\"space-y-4\">\n        <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Neutral Colors</h2>\n        <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n          <div *ngFor=\"let color of neutralColors\" class=\"p-4 rounded-lg border border-gray-200\">\n            <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n            <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n            <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n            <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  `\n})\nexport class ColorsComponent {\n  primaryColors: ColorSwatch[] = [\n    {\n      name: 'Primary',\n      hex: '#0D47A1',\n      usage: 'Main brand color, primary actions'\n    },\n    {\n      name: 'Primary Light',\n      hex: '#1976D2',\n      usage: 'Hover states, secondary elements'\n    },\n    {\n      name: 'Primary Lighter',\n      hex: '#2196F3',\n      usage: 'Accent elements, highlights'\n    }\n  ];\n\n  secondaryColors: ColorSwatch[] = [\n    {\n      name: 'Secondary',\n      hex: '#424242',\n      usage: 'Secondary actions, supporting elements'\n    },\n    {\n      name: 'Secondary Light',\n      hex: '#616161',\n      usage: 'Hover states for secondary elements'\n    },\n    {\n      name: 'Secondary Lighter',\n      hex: '#757575',\n      usage: 'Disabled states, subtle elements'\n    }\n  ];\n\n  semanticColors: ColorSwatch[] = [\n    {\n      name: 'Success',\n      hex: '#4CAF50',\n      usage: 'Success states, positive feedback'\n    },\n    {\n      name: 'Error',\n      hex: '#F44336',\n      usage: 'Error states, negative feedback'\n    },\n    {\n      name: 'Warning',\n      hex: '#FFC107',\n      usage: 'Warning states, cautionary feedback'\n    },\n    {\n      name: 'Info',\n      hex: '#2196F3',\n      usage: 'Information states, neutral feedback'\n    }\n  ];\n\n  neutralColors: ColorSwatch[] = [\n    {\n      name: 'White',\n      hex: '#FFFFFF',\n      usage: 'Background, text on dark surfaces'\n    },\n    {\n      name: 'Gray 100',\n      hex: '#F5F5F5',\n      usage: 'Light backgrounds, borders'\n    },\n    {\n      name: 'Gray 200',\n      hex: '#EEEEEE',\n      usage: 'Dividers, subtle backgrounds'\n    },\n    {\n      name: 'Gray 300',\n      hex: '#E0E0E0',\n      usage: 'Disabled states, borders'\n    },\n    {\n      name: 'Gray 400',\n      hex: '#BDBDBD',\n      usage: 'Placeholder text, icons'\n    },\n    {\n      name: 'Gray 500',\n      hex: '#9E9E9E',\n      usage: 'Secondary text, icons'\n    },\n    {\n      name: 'Gray 600',\n      hex: '#757575',\n      usage: 'Body text, icons'\n    },\n    {\n      name: 'Gray 700',\n      hex: '#616161',\n      usage: 'Headings, emphasis'\n    },\n    {\n      name: 'Gray 800',\n      hex: '#424242',\n      usage: 'Strong emphasis, dark mode text'\n    },\n    {\n      name: 'Gray 900',\n      hex: '#212121',\n      usage: 'Primary text, dark mode headings'\n    },\n    {\n      name: 'Black',\n      hex: '#000000',\n      usage: 'Strong emphasis, dark mode elements'\n    }\n  ];\n}\n",
+            "properties": [
+                {
+                    "name": "hex",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "usage",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "User",
             "id": "interface-User-d4821beac0e4a852e513391b7470981c4353fdd95a18628bb68136c8695b489ee15b926e2e5031bc26cf30e1508e0a362c3ee13a06734702b4d15af140e485d5",
             "file": "src/stories/user.ts",
@@ -554,6 +599,91 @@
             "implements": [
                 "ControlValueAccessor"
             ]
+        },
+        {
+            "name": "ColorsComponent",
+            "id": "component-ColorsComponent-7f6d264d48cceddc7f2f0ff5ca6f79ee9507e7f351cc11997f16ddb041e38e23e25e6a9f26a8c11ba50e6d1c366cf37b3bff7cf9c185e82a84e266a2b8bce336",
+            "file": "src/design-system/components/colors/colors.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ds-colors",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<div class=\"space-y-8\">\n  <!-- Primary Colors -->\n  <div class=\"space-y-4\">\n    <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Primary Colors</h2>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n      <div *ngFor=\"let color of primaryColors\" class=\"p-4 rounded-lg border border-gray-200\">\n        <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n        <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n        <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n        <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n      </div>\n    </div>\n  </div>\n\n  <!-- Secondary Colors -->\n  <div class=\"space-y-4\">\n    <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Secondary Colors</h2>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n      <div *ngFor=\"let color of secondaryColors\" class=\"p-4 rounded-lg border border-gray-200\">\n        <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n        <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n        <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n        <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n      </div>\n    </div>\n  </div>\n\n  <!-- Semantic Colors -->\n  <div class=\"space-y-4\">\n    <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Semantic Colors</h2>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n      <div *ngFor=\"let color of semanticColors\" class=\"p-4 rounded-lg border border-gray-200\">\n        <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n        <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n        <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n        <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n      </div>\n    </div>\n  </div>\n\n  <!-- Neutral Colors -->\n  <div class=\"space-y-4\">\n    <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Neutral Colors</h2>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n      <div *ngFor=\"let color of neutralColors\" class=\"p-4 rounded-lg border border-gray-200\">\n        <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n        <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n        <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n        <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n      </div>\n    </div>\n  </div>\n</div>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "neutralColors",
+                    "defaultValue": "[\n    {\n      name: 'White',\n      hex: '#FFFFFF',\n      usage: 'Background, text on dark surfaces'\n    },\n    {\n      name: 'Gray 100',\n      hex: '#F5F5F5',\n      usage: 'Light backgrounds, borders'\n    },\n    {\n      name: 'Gray 200',\n      hex: '#EEEEEE',\n      usage: 'Dividers, subtle backgrounds'\n    },\n    {\n      name: 'Gray 300',\n      hex: '#E0E0E0',\n      usage: 'Disabled states, borders'\n    },\n    {\n      name: 'Gray 400',\n      hex: '#BDBDBD',\n      usage: 'Placeholder text, icons'\n    },\n    {\n      name: 'Gray 500',\n      hex: '#9E9E9E',\n      usage: 'Secondary text, icons'\n    },\n    {\n      name: 'Gray 600',\n      hex: '#757575',\n      usage: 'Body text, icons'\n    },\n    {\n      name: 'Gray 700',\n      hex: '#616161',\n      usage: 'Headings, emphasis'\n    },\n    {\n      name: 'Gray 800',\n      hex: '#424242',\n      usage: 'Strong emphasis, dark mode text'\n    },\n    {\n      name: 'Gray 900',\n      hex: '#212121',\n      usage: 'Primary text, dark mode headings'\n    },\n    {\n      name: 'Black',\n      hex: '#000000',\n      usage: 'Strong emphasis, dark mode elements'\n    }\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorSwatch[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 130
+                },
+                {
+                    "name": "primaryColors",
+                    "defaultValue": "[\n    {\n      name: 'Primary',\n      hex: '#0D47A1',\n      usage: 'Main brand color, primary actions'\n    },\n    {\n      name: 'Primary Light',\n      hex: '#1976D2',\n      usage: 'Hover states, secondary elements'\n    },\n    {\n      name: 'Primary Lighter',\n      hex: '#2196F3',\n      usage: 'Accent elements, highlights'\n    }\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorSwatch[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 71
+                },
+                {
+                    "name": "secondaryColors",
+                    "defaultValue": "[\n    {\n      name: 'Secondary',\n      hex: '#424242',\n      usage: 'Secondary actions, supporting elements'\n    },\n    {\n      name: 'Secondary Light',\n      hex: '#616161',\n      usage: 'Hover states for secondary elements'\n    },\n    {\n      name: 'Secondary Lighter',\n      hex: '#757575',\n      usage: 'Disabled states, subtle elements'\n    }\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorSwatch[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 89
+                },
+                {
+                    "name": "semanticColors",
+                    "defaultValue": "[\n    {\n      name: 'Success',\n      hex: '#4CAF50',\n      usage: 'Success states, positive feedback'\n    },\n    {\n      name: 'Error',\n      hex: '#F44336',\n      usage: 'Error states, negative feedback'\n    },\n    {\n      name: 'Warning',\n      hex: '#FFC107',\n      usage: 'Warning states, cautionary feedback'\n    },\n    {\n      name: 'Info',\n      hex: '#2196F3',\n      usage: 'Information states, neutral feedback'\n    }\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorSwatch[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 107
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\ninterface ColorSwatch {\n  name: string;\n  hex: string;\n  usage: string;\n}\n\n@Component({\n  selector: 'ds-colors',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div class=\"space-y-8\">\n      <!-- Primary Colors -->\n      <div class=\"space-y-4\">\n        <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Primary Colors</h2>\n        <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n          <div *ngFor=\"let color of primaryColors\" class=\"p-4 rounded-lg border border-gray-200\">\n            <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n            <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n            <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n            <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n          </div>\n        </div>\n      </div>\n\n      <!-- Secondary Colors -->\n      <div class=\"space-y-4\">\n        <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Secondary Colors</h2>\n        <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n          <div *ngFor=\"let color of secondaryColors\" class=\"p-4 rounded-lg border border-gray-200\">\n            <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n            <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n            <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n            <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n          </div>\n        </div>\n      </div>\n\n      <!-- Semantic Colors -->\n      <div class=\"space-y-4\">\n        <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Semantic Colors</h2>\n        <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n          <div *ngFor=\"let color of semanticColors\" class=\"p-4 rounded-lg border border-gray-200\">\n            <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n            <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n            <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n            <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n          </div>\n        </div>\n      </div>\n\n      <!-- Neutral Colors -->\n      <div class=\"space-y-4\">\n        <h2 class=\"text-2xl font-semibold text-[#0D47A1]\">Neutral Colors</h2>\n        <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n          <div *ngFor=\"let color of neutralColors\" class=\"p-4 rounded-lg border border-gray-200\">\n            <div class=\"h-24 rounded-md mb-2\" [style.background-color]=\"color.hex\"></div>\n            <h3 class=\"font-medium text-[#0D47A1]\">{{ color.name }}</h3>\n            <p class=\"text-sm text-gray-600\">{{ color.hex }}</p>\n            <p class=\"text-sm text-gray-600\">{{ color.usage }}</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  `\n})\nexport class ColorsComponent {\n  primaryColors: ColorSwatch[] = [\n    {\n      name: 'Primary',\n      hex: '#0D47A1',\n      usage: 'Main brand color, primary actions'\n    },\n    {\n      name: 'Primary Light',\n      hex: '#1976D2',\n      usage: 'Hover states, secondary elements'\n    },\n    {\n      name: 'Primary Lighter',\n      hex: '#2196F3',\n      usage: 'Accent elements, highlights'\n    }\n  ];\n\n  secondaryColors: ColorSwatch[] = [\n    {\n      name: 'Secondary',\n      hex: '#424242',\n      usage: 'Secondary actions, supporting elements'\n    },\n    {\n      name: 'Secondary Light',\n      hex: '#616161',\n      usage: 'Hover states for secondary elements'\n    },\n    {\n      name: 'Secondary Lighter',\n      hex: '#757575',\n      usage: 'Disabled states, subtle elements'\n    }\n  ];\n\n  semanticColors: ColorSwatch[] = [\n    {\n      name: 'Success',\n      hex: '#4CAF50',\n      usage: 'Success states, positive feedback'\n    },\n    {\n      name: 'Error',\n      hex: '#F44336',\n      usage: 'Error states, negative feedback'\n    },\n    {\n      name: 'Warning',\n      hex: '#FFC107',\n      usage: 'Warning states, cautionary feedback'\n    },\n    {\n      name: 'Info',\n      hex: '#2196F3',\n      usage: 'Information states, neutral feedback'\n    }\n  ];\n\n  neutralColors: ColorSwatch[] = [\n    {\n      name: 'White',\n      hex: '#FFFFFF',\n      usage: 'Background, text on dark surfaces'\n    },\n    {\n      name: 'Gray 100',\n      hex: '#F5F5F5',\n      usage: 'Light backgrounds, borders'\n    },\n    {\n      name: 'Gray 200',\n      hex: '#EEEEEE',\n      usage: 'Dividers, subtle backgrounds'\n    },\n    {\n      name: 'Gray 300',\n      hex: '#E0E0E0',\n      usage: 'Disabled states, borders'\n    },\n    {\n      name: 'Gray 400',\n      hex: '#BDBDBD',\n      usage: 'Placeholder text, icons'\n    },\n    {\n      name: 'Gray 500',\n      hex: '#9E9E9E',\n      usage: 'Secondary text, icons'\n    },\n    {\n      name: 'Gray 600',\n      hex: '#757575',\n      usage: 'Body text, icons'\n    },\n    {\n      name: 'Gray 700',\n      hex: '#616161',\n      usage: 'Headings, emphasis'\n    },\n    {\n      name: 'Gray 800',\n      hex: '#424242',\n      usage: 'Strong emphasis, dark mode text'\n    },\n    {\n      name: 'Gray 900',\n      hex: '#212121',\n      usage: 'Primary text, dark mode headings'\n    },\n    {\n      name: 'Black',\n      hex: '#000000',\n      usage: 'Strong emphasis, dark mode elements'\n    }\n  ];\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
         },
         {
             "name": "HeaderComponent",
@@ -1574,6 +1704,46 @@
             "implements": [
                 "ControlValueAccessor"
             ]
+        },
+        {
+            "name": "TypographyComponent",
+            "id": "component-TypographyComponent-21c0e863c8ac7b978b2632385fba357cf9cbbf271c8237038b86841331c807a037fb96699b49c323fc6a7343b83ea7a0469a7c3792939b913a5b69b922025b3a",
+            "file": "src/design-system/components/typography/typography.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ds-typography",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<div class=\"space-y-8\">\n  <!-- Headings -->\n  <div class=\"space-y-4\">\n    <h1 class=\"text-4xl font-bold text-[#0D47A1]\">Heading 1 (text-4xl)</h1>\n    <h2 class=\"text-3xl font-semibold text-[#0D47A1]\">Heading 2 (text-3xl)</h2>\n    <h3 class=\"text-2xl font-semibold text-[#0D47A1]\">Heading 3 (text-2xl)</h3>\n    <h4 class=\"text-xl font-medium text-[#0D47A1]\">Heading 4 (text-xl)</h4>\n    <h5 class=\"text-lg font-medium text-[#0D47A1]\">Heading 5 (text-lg)</h5>\n    <h6 class=\"text-base font-medium text-[#0D47A1]\">Heading 6 (text-base)</h6>\n  </div>\n\n  <!-- Body Text -->\n  <div class=\"space-y-4\">\n    <p class=\"text-base text-[#0D47A1]\">Body Text (text-base)</p>\n    <p class=\"text-sm text-[#0D47A1]\">Small Text (text-sm)</p>\n    <p class=\"text-xs text-[#0D47A1]\">Extra Small Text (text-xs)</p>\n  </div>\n\n  <!-- Text Styles -->\n  <div class=\"space-y-4\">\n    <p class=\"text-base font-bold text-[#0D47A1]\">Bold Text</p>\n    <p class=\"text-base font-semibold text-[#0D47A1]\">Semibold Text</p>\n    <p class=\"text-base font-medium text-[#0D47A1]\">Medium Text</p>\n    <p class=\"text-base font-normal text-[#0D47A1]\">Normal Text</p>\n    <p class=\"text-base font-light text-[#0D47A1]\">Light Text</p>\n  </div>\n\n  <!-- Text Colors -->\n  <div class=\"space-y-4\">\n    <p class=\"text-base text-[#0D47A1]\">Primary Text Color</p>\n    <p class=\"text-base text-[#1976D2]\">Secondary Text Color</p>\n    <p class=\"text-base text-[#2196F3]\">Accent Text Color</p>\n    <p class=\"text-base text-[#F44336]\">Error Text Color</p>\n    <p class=\"text-base text-[#4CAF50]\">Success Text Color</p>\n    <p class=\"text-base text-[#FFC107]\">Warning Text Color</p>\n  </div>\n\n  <!-- Text Alignment -->\n  <div class=\"space-y-4\">\n    <p class=\"text-base text-left text-[#0D47A1]\">Left Aligned Text</p>\n    <p class=\"text-base text-center text-[#0D47A1]\">Center Aligned Text</p>\n    <p class=\"text-base text-right text-[#0D47A1]\">Right Aligned Text</p>\n  </div>\n\n  <!-- Text Decoration -->\n  <div class=\"space-y-4\">\n    <p class=\"text-base underline text-[#0D47A1]\">Underlined Text</p>\n    <p class=\"text-base line-through text-[#0D47A1]\">Strikethrough Text</p>\n    <p class=\"text-base italic text-[#0D47A1]\">Italic Text</p>\n  </div>\n</div>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'ds-typography',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div class=\"space-y-8\">\n      <!-- Headings -->\n      <div class=\"space-y-4\">\n        <h1 class=\"text-4xl font-bold text-[#0D47A1]\">Heading 1 (text-4xl)</h1>\n        <h2 class=\"text-3xl font-semibold text-[#0D47A1]\">Heading 2 (text-3xl)</h2>\n        <h3 class=\"text-2xl font-semibold text-[#0D47A1]\">Heading 3 (text-2xl)</h3>\n        <h4 class=\"text-xl font-medium text-[#0D47A1]\">Heading 4 (text-xl)</h4>\n        <h5 class=\"text-lg font-medium text-[#0D47A1]\">Heading 5 (text-lg)</h5>\n        <h6 class=\"text-base font-medium text-[#0D47A1]\">Heading 6 (text-base)</h6>\n      </div>\n\n      <!-- Body Text -->\n      <div class=\"space-y-4\">\n        <p class=\"text-base text-[#0D47A1]\">Body Text (text-base)</p>\n        <p class=\"text-sm text-[#0D47A1]\">Small Text (text-sm)</p>\n        <p class=\"text-xs text-[#0D47A1]\">Extra Small Text (text-xs)</p>\n      </div>\n\n      <!-- Text Styles -->\n      <div class=\"space-y-4\">\n        <p class=\"text-base font-bold text-[#0D47A1]\">Bold Text</p>\n        <p class=\"text-base font-semibold text-[#0D47A1]\">Semibold Text</p>\n        <p class=\"text-base font-medium text-[#0D47A1]\">Medium Text</p>\n        <p class=\"text-base font-normal text-[#0D47A1]\">Normal Text</p>\n        <p class=\"text-base font-light text-[#0D47A1]\">Light Text</p>\n      </div>\n\n      <!-- Text Colors -->\n      <div class=\"space-y-4\">\n        <p class=\"text-base text-[#0D47A1]\">Primary Text Color</p>\n        <p class=\"text-base text-[#1976D2]\">Secondary Text Color</p>\n        <p class=\"text-base text-[#2196F3]\">Accent Text Color</p>\n        <p class=\"text-base text-[#F44336]\">Error Text Color</p>\n        <p class=\"text-base text-[#4CAF50]\">Success Text Color</p>\n        <p class=\"text-base text-[#FFC107]\">Warning Text Color</p>\n      </div>\n\n      <!-- Text Alignment -->\n      <div class=\"space-y-4\">\n        <p class=\"text-base text-left text-[#0D47A1]\">Left Aligned Text</p>\n        <p class=\"text-base text-center text-[#0D47A1]\">Center Aligned Text</p>\n        <p class=\"text-base text-right text-[#0D47A1]\">Right Aligned Text</p>\n      </div>\n\n      <!-- Text Decoration -->\n      <div class=\"space-y-4\">\n        <p class=\"text-base underline text-[#0D47A1]\">Underlined Text</p>\n        <p class=\"text-base line-through text-[#0D47A1]\">Strikethrough Text</p>\n        <p class=\"text-base italic text-[#0D47A1]\">Italic Text</p>\n      </div>\n    </div>\n  `\n})\nexport class TypographyComponent {}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
         }
     ],
     "modules": [],
@@ -1679,7 +1849,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 5,
+        "count": 4,
         "status": "low",
         "files": [
             {
@@ -1720,6 +1890,24 @@
                 "status": "low"
             },
             {
+                "filePath": "src/design-system/components/colors/colors.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ColorsComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/design-system/components/colors/colors.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ColorSwatch",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
                 "filePath": "src/design-system/components/input/input.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1744,6 +1932,15 @@
                 "name": "SelectComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/15",
+                "status": "low"
+            },
+            {
+                "filePath": "src/design-system/components/typography/typography.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TypographyComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
